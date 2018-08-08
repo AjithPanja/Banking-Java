@@ -1,0 +1,58 @@
+import java.util.Scanner;
+public class Account {
+	String acc_name;
+	double acc_no;
+	double balance;
+	static float interest_rate;
+	Account()
+	{
+		
+	}
+	Account(String acc_name,double acc_no,double balance)
+	{
+		this.acc_name = acc_name;
+		this.acc_no = acc_no;
+		this.balance = balance;
+	}
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		
+		String name;
+		Double no,bl;
+		System.out.print("Enter the Acc_Name : " );
+		name = s.nextLine();
+		System.out.print("Enter the Acc_Number : " );
+		no = s.nextDouble();
+		System.out.print("Enter the Balance Amount : " );
+		bl = s.nextDouble();
+		Account a = new Account(name,no,bl);
+		System.out.print(a.getName());
+	}
+	public static void setInterest(float interest)
+	{
+		interest_rate = interest;
+	}
+	public static void modInterest()
+	{
+		float interest;
+		interest = s.nextFloat();
+		interest_rate = interest;
+	}
+	public float getInterest()
+	{
+		return interest_rate;
+	}
+	public String getName()
+	{
+		return acc_name;
+	}
+	public double getNo()
+	{
+		return acc_no;
+	}
+	public double getBalance()
+	{
+		return balance;
+	}
+}

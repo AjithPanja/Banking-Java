@@ -1,0 +1,129 @@
+import java.util.Scanner;
+public abstract class Account {
+	static String acc_name;
+	static double acc_no;
+	static double balance;
+	static float interest_rate;
+	
+	/*Account(String acc_name,double acc_no,double balance)
+	{
+		this.acc_name = acc_name;
+		this.acc_no = acc_no;
+		this.balance = balance;
+	}*/
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		String name;
+		Double no,bl;
+		CurrentAccount ca = new CurrentAccount();
+		LoanAccount la = new LoanAccount();
+		System.out.print("Enter the Acc_Name : " );
+		name = s.nextLine();
+		System.out.print("Enter the Acc_Number : " );
+		no = s.nextDouble();
+		System.out.print("Enter the Balance Amount : " );
+		bl = s.nextDouble();
+		setName(name);
+		setNo(no);
+		setbl(bl);
+		System.out.print(getName());
+		ca.calculateInterestRate();
+		la.calculateLoan();
+	}
+	public static void setInterest(float interest)
+	{
+		interest_rate = interest;
+	}
+	public static void modInterest()
+	{
+		Scanner s = new Scanner(System.in);
+		float interest;
+		interest = s.nextFloat();
+		interest_rate = interest;
+	}
+	public static float getInterest()
+	{
+		return interest_rate;
+	}
+	public static void setName(String name)
+	{
+		acc_name = name;
+	}
+	public static void setNo(double no)
+	{
+		acc_no = no;
+	}
+	public static void setbl(double bl)
+	{
+		balance = bl;
+	}
+	public static String getName()
+	{
+		return acc_name;
+	}
+	public static double getNo()
+	{
+		return acc_no;
+	}
+	public static double getBalance()
+	{
+		return balance;
+	}
+	public abstract double calculateInterestRate();
+}
+class SavingsAccount extends Account
+{
+
+	
+	public double calculateInterestRate() {
+		
+		return 0;
+	}
+	
+}
+class CurrentAccount extends Account
+{
+	
+	public double calculateInterestRate() {
+		Scanner s = new Scanner(System.in);
+		System.out.print("Enter the Interest Rate :");
+		float ir;
+		ir = s.nextFloat();
+		setInterest(ir);
+		
+		return 0;
+	}
+
+}
+class LoanAccount extends CurrentAccount
+{
+	public void calculateLoan()
+	{
+		Scanner s = new Scanner(System.in);
+		float total_loan;
+		float loan_interest;
+		int loan_period;
+		double loan;
+		int check;
+		System.out.print("Enter the Total Loan Amount :");
+		total_loan = s.nextFloat();
+		System.out.print("Enter the Total Loan Interest:");
+		loan_interest = s.nextFloat();
+		System.out.print("Enter the Loan Period:");
+		loan_period = s.nextInt();
+		loan = (total_loan/loan_interest)*loan_period;
+		System.out.print("Would like to pay the loan...1.Yes 2.No : ");
+		check = s.nextInt();
+		if(check==1)
+		{
+			balance = balance - loan;
+			System.out.print(loan);
+			System.out.print(getBalance());
+		}
+		else
+		{
+			return;
+		}
+	}
+}
